@@ -5,7 +5,7 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'add-post', component: AddPostComponent },
+  { path: 'add-post', component: AddPostComponent }
 ];
 
 @NgModule({
