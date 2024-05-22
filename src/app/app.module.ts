@@ -9,13 +9,15 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AddPostComponent } from './pages/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     AddPostComponent,
-    NavbarComponent
+    NavbarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

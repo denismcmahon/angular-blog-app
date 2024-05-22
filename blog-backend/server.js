@@ -16,6 +16,12 @@ app.use(bodyParser.json());
 const postRoutes = require('./routes/posts');
 app.use('/api/posts', postRoutes);
 
+const adminRoutes = require('./routes/admin');
+app.use('/api/admin', adminRoutes);
+
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 // start the server
 const PORT = 3000;
 app.listen(PORT, () => {

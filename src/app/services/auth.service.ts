@@ -35,4 +35,8 @@ export class AuthService {
   isAdmin(): boolean {
     return this.getRole() === 'admin';
   }
+
+  isSuperAdmin(): boolean {
+    return this.getRole() === 'superAdmin';
+  }
 }
