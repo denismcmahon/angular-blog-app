@@ -1,0 +1,8 @@
+nav {
+  .container {
+    @apply flex justify-between items-center;
+  }
+  .menu {
+    @apply hidden md:flex space-x-4;
+  }
+}
