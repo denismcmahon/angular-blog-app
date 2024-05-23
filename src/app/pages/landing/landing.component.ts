@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,11 +9,11 @@ import { HttpClient } from '@angular/common/http';
 export class LandingComponent implements OnInit {
   posts: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-      this.http.get<any[]>('http://localhost:3000/api/posts').subscribe(data => {
-        this.posts = data;
-      });
+    this.postService.getPosts().subscribe(data => {
+      this.posts = data;
+    });
   }
 }

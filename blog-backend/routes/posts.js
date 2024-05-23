@@ -4,19 +4,20 @@ const Post = require('../models/Post');
 const router = express.Router();
 
 // create a new post
-router.post('/', async (req, res) => {
+router.post('/add-post', async (req, res) => {
+  const { title, content } = req.body;
+
   try {
-    const { title, content } = req.body;
-    const post = new Post({ title, content });
-    await post.save();
-    res.status(201).send(post);
+    const newPost = new Post({ title, content });
+    await newPost.save();
+    res.status(201).send('Post created successfully');
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send('An error occurred');
   }
 });
 
 // get all posts
-router.get('/', async (req, res) => {
+router.get('/getposts', async (req, res) => {
   try {
     const posts = await Post.find();
     res.status(200).send(posts);
