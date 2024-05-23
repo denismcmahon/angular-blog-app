@@ -33,9 +33,11 @@ export class AuthService {
   }
 
   getRole(): string | null {
+    console.log('DM == getRole called');
     if (!this.userRole) {
       this.userRole = localStorage.getItem('userRole');
     }
+    console.log('DM == this.userRole: ', this.userRole);
     return this.userRole;
   }
 
@@ -45,5 +47,9 @@ export class AuthService {
 
   isSuperAdmin(): boolean {
     return this.getRole() === 'superAdmin';
+  }
+
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
   }
 }

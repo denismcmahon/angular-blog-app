@@ -5,8 +5,11 @@
       <a class="text-white hover:text-gray-200" href="/home">Home</a>
       <a class="text-white hover:text-gray-200" href="/about">About</a>
       <a class="text-white hover:text-gray-200" href="/contact">Contact</a>
-      <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" href="/addPost">Add Post</a>
-      <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" href="/admin">Admin</a>
+      <ng-container *ngIf="authService.isLoggedIn();">
+        <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" routerLink="/add-post">Add Post</a>
+        <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" routerLink="/admin">Admin</a>
+        <button (click)="logout()" class="text-white hover:text-gray-200">Logout</button>
+      </ng-container>
     </div>
     <button class="text-white md:hidden" (click)="toggleMenu()">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
