@@ -1,16 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost:27017/blog', {});
+mongoose.connect('mongodb://localhost:27017/angular-starter-blog', {});
 
 // middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // routes
 const postRoutes = require('./routes/posts');
@@ -23,7 +23,7 @@ const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
 // start the server
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 })

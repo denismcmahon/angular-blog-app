@@ -10,6 +10,7 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminComponent } from './components/admin/admin.component';
     LandingComponent,
     AddPostComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
