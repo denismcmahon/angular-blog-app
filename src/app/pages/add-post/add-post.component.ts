@@ -30,15 +30,20 @@ export class AddPostComponent implements OnInit {
   onSubmit() {
     if (this.postForm.valid) {
       const { title, content } = this.postForm.value;
-      this.postService.addPost(title, content).subscribe(
-        response => {
+      this.postService.addPost(title, content).subscribe({
+        next: (response) => {
           console.log('Navigating to home');
           this.router.navigate(['/']); // redirect to home or another appropriate page
         },
-        error => {
+        error: (error) => {
           this.errorMessage = 'An error occurred while creating the post. Please try again.';
+          console.error('Error creating post:', error); // Log the error for debugging purposes
+        },
+        complete: () => {
+          // Optional: handle completion of the observable if needed
+          console.log('Post creation request complete');
         }
-      );
+      });
     }
   }
 }
