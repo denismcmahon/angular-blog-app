@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.error('Login failed', error);
-          // handle login error (e.g., show a notification)
+          this.errorMessage = 'Invalid credentials. Please try again.'
         }
       );
     }
