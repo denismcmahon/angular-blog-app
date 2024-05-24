@@ -31,4 +31,13 @@ router.post('/assign-role', async (req, res) => {
   }
 });
 
+router.get('/users', async (req, res) => {
+  try {
+    const users = await User.find({}, 'id username role'); // fetch only id, username and role fields from the db
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching users', error });
+  }
+})
+
 module.exports = router;

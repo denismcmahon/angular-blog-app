@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['user', 'admin', 'superAdmin'],
     default: 'user'
-  }
+  },
+  token: {
+    type: String,
+    required: false
+  }     // token field if needed for password setup
 });
 
 const User = mongoose.model('User', userSchema);
