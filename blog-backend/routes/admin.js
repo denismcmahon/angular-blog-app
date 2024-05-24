@@ -6,7 +6,7 @@ router.post('/assign-role', async (req, res) => {
   const { username, role } = req.body;
 
   // validate the role
-  if (!['user', 'admin', 'superAdmin'].includes(role)) {
+  if (!['admin', 'editor', 'viewer'].includes(role)) {
     return res.status(400).send('Invalid role');
   }
 

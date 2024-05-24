@@ -9,8 +9,9 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { AddPostComponent } from './pages/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserAdminComponent } from './components/admin/useradmin.component';
+import { UserAdminComponent } from './components/admin/useradmin/useradmin.component';
 import { LoginComponent } from './components/login/login.component';
+import { AdduserComponent } from './components/admin/adduser/adduser.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LoginComponent } from './components/login/login.component';
     AddPostComponent,
     NavbarComponent,
     UserAdminComponent,
-    LoginComponent
+    LoginComponent,
+    AdduserComponent
   ],
   imports: [
     BrowserModule,

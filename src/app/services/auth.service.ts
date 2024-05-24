@@ -39,12 +39,12 @@ export class AuthService {
     return this.userRole;
   }
 
-  isAdmin(): boolean {
-    return this.getRole() === 'admin';
+  isEditor(): boolean {
+    return this.getRole() === 'editor';
   }
 
-  isSuperAdmin(): boolean {
-    return this.getRole() === 'superAdmin';
+  isAdmin(): boolean {
+    return this.getRole() === 'admin';
   }
 
   isLoggedIn(): boolean {

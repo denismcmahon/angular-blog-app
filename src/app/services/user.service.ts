@@ -13,4 +13,8 @@ export class UserService {
   getUsers() {
     return this.http.get<any[]>(`${this.apiUrl}/admin/users`);
   }
+
+  addUser(userData: any) {
+    return this.http.post(`${this.apiUrl}/admin/add_user`, userData);
+  }
 }

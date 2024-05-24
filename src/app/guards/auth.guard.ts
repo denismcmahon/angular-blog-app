@@ -6,5 +6,5 @@ export const authGuard = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.isAdmin() ? true : router.parseUrl('/');
+  return authService.isEditor() ? true : router.parseUrl('/');
 }
