@@ -7,7 +7,7 @@
       <a class="text-white hover:text-gray-200" href="/contact">Contact</a>
       <ng-container *ngIf="authService.isLoggedIn();">
         <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" routerLink="/add-post">Add Post</a>
-        <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" routerLink="/admin">Admin</a>
+        <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" routerLink="/useradmin">User Admin</a>
         <button (click)="logout()" class="text-white hover:text-gray-200">Logout</button>
       </ng-container>
     </div>
@@ -21,7 +21,7 @@
     <a class="text-white hover:text-gray-200" href="/home">Home</a>
     <a class="text-white hover:text-gray-200" href="/about">About</a>
     <a class="text-white hover:text-gray-200" href="/contact">Contact</a>
-    <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" href="/addPost">Add Post</a>
-    <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" href="/admin">Admin</a>
+    <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" href="/add-post">Add Post</a>
+    <a *ngIf="authService.isSuperAdmin()" class="text-white hover:text-gray-200" href="/useradmin">User Admin</a>
   </div>
 </nav>
