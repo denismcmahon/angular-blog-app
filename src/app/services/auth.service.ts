@@ -9,13 +9,13 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:3000/api';
   private userRole: string | null = null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   login(username: string, password: string): Observable<{ token: string }> {
-    console.log('DM ==> username and password: ', username, password);
-    return this.http.post<{ token: string }>('http://localhost:3000/api/auth/login', { username, password });
+    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, { username, password });
   }
 
   handleLogin(token: string) {
@@ -33,11 +33,9 @@ export class AuthService {
   }
 
   getRole(): string | null {
-    console.log('DM == getRole called');
     if (!this.userRole) {
       this.userRole = localStorage.getItem('userRole');
     }
-    console.log('DM == this.userRole: ', this.userRole);
     return this.userRole;
   }
 
