@@ -26,11 +26,11 @@ router.post('/add-user', async (req, res) => {
     }
 
     // create a new user
-    user = new User({ email, role, token });
+    user = new User({ username: email, role, token });
     await user.save();
 
     // send email for passowrd setup
-    await sendPasswordSetupEmail(email.token);
+    await sendPasswordSetupEmail(email, token);
 
     res.status(201).json({ message: 'User added and email sent' });
   }

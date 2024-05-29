@@ -15,6 +15,6 @@ export class UserService {
   }
 
   addUser(userData: any) {
-    return this.http.post(`${this.apiUrl}/admin/add_user`, userData);
+    return this.http.post(`${this.apiUrl}/admin/add-user`, userData);
   }
 }
