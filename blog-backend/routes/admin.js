@@ -3,6 +3,7 @@ const User = require('../models/User');
 const router = express.Router();
 const crypto = require('crypto');
 const { sendPasswordSetupEmail } = require('../services/emailService');
+const authenticateJWT = require('../middlewares/auth');
 
 router.get('/users', async (req, res) => {
   try {
@@ -13,7 +14,8 @@ router.get('/users', async (req, res) => {
   }
 })
 
-router.post('/add-user', async (req, res) => {
+router.post('/add-user', authenticateJWT, async (req, res) => {
+  console.log('DM ==> add-user ==> req.body: ', req.body);
   try {
     const { email, role } = req.body;
     // generate a token for password setup
