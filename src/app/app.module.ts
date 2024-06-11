@@ -10,10 +10,12 @@ import { AddPostComponent } from './pages/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserAdminComponent } from './components/admin/useradmin/useradmin.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { AdduserComponent } from './components/admin/adduser/adduser.component';
+import { SetPasswordComponent } from './components/auth/set-password/set-password.component';
 
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
     NavbarComponent,
     UserAdminComponent,
     LoginComponent,
-    AdduserComponent
+    AdduserComponent,
+    SetPasswordComponent
   ],
   imports: [
     BrowserModule,
