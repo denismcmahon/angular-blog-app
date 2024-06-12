@@ -1,47 +1,47 @@
-<!-- admin-add-user.component.html -->
-<div class="max-w-lg mx-auto p-4 bg-white shadow-md rounded">
-  <h2 class="text-2xl font-bold mb-4">Add New User</h2>
-  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
-    <div class="mb-4">
-      <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
-      <input
-        id="email"
-        formControlName="email"
-        type="email"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        [ngClass]="{'border-red-500': addUserForm.get('email')?.invalid && addUserForm.get('email')?.touched}"
-      />
-      <div *ngIf="addUserForm.get('email')?.invalid && addUserForm.get('email')?.touched" class="text-red-500 text-xs italic">
-        Please enter a valid email.
+<div class="min-h-screen bg-white flex items-center justify-center">
+  <div class="bg-gray-100 text-gray-900 p-8 rounded-lg shadow-lg max-w-lg w-full">
+    <h2 class="text-3xl font-bold mb-6 text-center">Add New User</h2>
+    <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium mb-2">Email</label>
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          class="w-full p-3 border border-gray-300 rounded bg-white"
+          [ngClass]="{'border-red-500': addUserForm.get('email')?.invalid && addUserForm.get('email')?.touched}"
+        />
+        <div *ngIf="addUserForm.get('email')?.invalid && addUserForm.get('email')?.touched">
+          <small class="text-red-500">Please enter a valid email.</small>
+        </div>
       </div>
-    </div>
-
-    <div class="mb-4">
-      <label for="role" class="block text-gray-700 font-bold mb-2">Role:</label>
-      <select
-        id="role"
-        formControlName="role"
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        [ngClass]="{'border-red-500': addUserForm.get('role')?.invalid && addUserForm.get('role')?.touched}"
-      >
-        <option value="" disabled>Select a role</option>
-        <option value="admin">Admin</option>
-        <option value="editor">Editor</option>
-        <option value="viewer">Viewer</option>
-      </select>
-      <div *ngIf="addUserForm.get('role')?.invalid && addUserForm.get('role')?.touched" class="text-red-500 text-xs italic">
-        Please select a role.
+      <div class="mb-4">
+        <label for="role" class="block text-sm font-medium mb-2">Role</label>
+        <select
+          id="role"
+          formControlName="role"
+          class="w-full p-3 border border-gray-300 rounded bg-white"
+          [ngClass]="{'border-red-500': addUserForm.get('role')?.invalid && addUserForm.get('role')?.touched}"
+        >
+          <option value="" disabled>Select a role</option>
+          <option value="admin">Admin</option>
+          <option value="editor">Editor</option>
+          <option value="viewer">Viewer</option>
+        </select>
+        <div *ngIf="addUserForm.get('role')?.invalid && addUserForm.get('role')?.touched">
+          <small class="text-red-500">Please select a role.</small>
+        </div>
       </div>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <button
-        type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        [disabled]="addUserForm.invalid"
-      >
-        Add User
-      </button>
-    </div>
-  </form>
+      <div class="flex items-center justify-between">
+        <button
+          type="submit"
+          class="w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400"
+          [disabled]="addUserForm.invalid"
+        >
+          Add User
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
+

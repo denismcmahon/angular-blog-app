@@ -33,4 +33,29 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/set-password', async (req, res) => {
+  const { token, password } = req.body;
+
+  try {
+    // verify token
+    const user = await User.findOne({ token: token });
+    if(!user) {
+      return res.status(400).json({ message: 'Invalid token or user does not exist' });
+    }
+
+    // hash the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    // update the users password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({ message: 'Password successfully set!'});
+  } catch (err) {
+    console.error('DM ==> set-password route error: ', err);
+    res.status(400).json({ message: 'Invalid token or user does not exist' });
+  }
+});
+
 module.exports = router;

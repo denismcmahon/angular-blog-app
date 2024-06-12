@@ -25,6 +25,10 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
+  setPassword(token: string, password: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/set-password`, { token, password });
+  }
+
   logout() {
     this.userRole = null;
     localStorage.removeItem('userRole');

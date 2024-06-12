@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../../services/auth.service';
+import { passwordMatchValidator } from '../../../validators/password-match.validator';
 
 @Component({
   selector: 'app-set-password',
@@ -16,25 +18,23 @@ export class SetPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
-      this.token = this.route.snapshot.paramMap.get('token') || '';
-      this.setPasswordForm = this.fb.group({
-        password: ['', Validators.required, Validators.minLength(6)],
-        confirmPassword: ['', Validators.required]
-      }, { validator: this.passwordMatchValidator });
-  }
-
-  passwordMatchValidator(form: FormGroup) {
-    return form.controls['password'].value === form.controls['confirmPassword'].value ? null : { 'mismatch': true };
+    this.token = this.route.snapshot.paramMap.get('token') || '';
+    this.setPasswordForm = this.fb.group({
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: passwordMatchValidator });
   }
 
   onSubmit(): void {
     if (this.setPasswordForm.valid) {
       const  password  = this.setPasswordForm.get('password')?.value;
-      this.http.post('/api/set-password', { token: this.token, password }).subscribe(
+      console.log('Submitting form: ', password, this.token);
+      this.authService.setPassword(this.token, password).subscribe(
         response => {
           this.message = 'Password set successfully. You can now login.';
         },
