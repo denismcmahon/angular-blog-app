@@ -13,8 +13,8 @@ module.exports = {
         testSecondary: '#757575',
         buttonBg: '#009688',
         buttonText: '#FFFFFF',
-        navbarBg: '#E0F2F1',
-        navbarText: '#009688',
+        navbarBg: '#009688',
+        navbarText: '#E0F2F1',
       }
     },
   },

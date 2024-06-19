@@ -1,6 +1,6 @@
-<div class="min-h-screen bg-white flex items-center justify-center">
-  <div class="bg-gray-100 text-gray-900 p-8 rounded-lg shadow-lg max-w-lg w-full">
-    <h2 class="text-3xl font-bold mb-6 text-center">Login</h2>
+<div class="min-h-screen bg-background flex items-center justify-center">
+  <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg max-w-lg w-full">
+    <h2 class="text-3xl font-bold mb-6 text-center">LOGIN</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div *ngIf="errorMessage" class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded">
         {{ errorMessage }}
@@ -31,8 +31,8 @@
         </div>
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid" class="w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400">
-        Login
+      <button type="submit" [disabled]="loginForm.invalid" class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400">
+        LOGIN
       </button>
     </form>
   </div>

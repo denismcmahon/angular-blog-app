@@ -1,27 +1,27 @@
-<nav class="bg-black p-4">
+<nav class="bg-navbarBg p-4">
   <div class="container mx-auto flex justify-between items-center">
-    <a class="text-white text-2xl font-bold" href="/">My Blog</a>
+    <a class="text-navbarText text-2xl font-bold" href="/">PostPress</a>
     <div class="hidden md:flex space-x-4">
-      <a class="text-white hover:text-gray-200" href="/">Home</a>
-      <a class="text-white hover:text-gray-200" href="/about">About</a>
-      <a class="text-white hover:text-gray-200" href="/contact">Contact</a>
+      <a class="text-navbarText hover:text-secondary" href="/">Home</a>
+      <a class="text-navbarText hover:text-secondary" href="/about">About</a>
+      <a class="text-navbarText hover:text-secondary" href="/contact">Contact</a>
       <ng-container *ngIf="authService.isLoggedIn();">
-        <a *ngIf="authService.isEditor()" class="text-white hover:text-gray-200" routerLink="/add-post">Add Post</a>
-        <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" routerLink="/admin/home">User Admin</a>
-        <button (click)="logout()" class="text-white hover:text-gray-200">Logout</button>
+        <a *ngIf="authService.isEditor()" class="text-navbarText hover:text-secondary" routerLink="/add-post">Add Post</a>
+        <a *ngIf="authService.isAdmin()" class="text-navbarText hover:text-secondary" routerLink="/admin/home">User Admin</a>
+        <button (click)="logout()" class="text-navbarText hover:text-secondary">Logout</button>
       </ng-container>
     </div>
-    <button class="text-white md:hidden" (click)="toggleMenu()">
+    <button class="text-navbarText md:hidden" (click)="toggleMenu()">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
   </div>
   <div *ngIf="menuOpen" class="md:hidden flex flex-col space-y-2 mt-4">
-    <a class="text-white hover:text-gray-200" href="/">Home</a>
-    <a class="text-white hover:text-gray-200" href="/about">About</a>
-    <a class="text-white hover:text-gray-200" href="/contact">Contact</a>
-    <a *ngIf="authService.isEditor()" class="text-white hover:text-gray-200" href="/add-post">Add Post</a>
-    <a *ngIf="authService.isAdmin()" class="text-white hover:text-gray-200" href="/admin/home">User Admin</a>
+    <a class="text-navbarText hover:text-secondary" href="/">Home</a>
+    <a class="text-navbarText hover:text-secondary" href="/about">About</a>
+    <a class="text-navbarText hover:text-secondary" href="/contact">Contact</a>
+    <a *ngIf="authService.isEditor()" class="text-navbarText hover:text-secondary" href="/add-post">Add Post</a>
+    <a *ngIf="authService.isAdmin()" class="text-navbarText hover:text-secondary" href="/admin/home">User Admin</a>
   </div>
 </nav>

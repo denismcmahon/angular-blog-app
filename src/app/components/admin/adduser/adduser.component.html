@@ -1,6 +1,6 @@
-<div class="min-h-screen bg-white flex items-center justify-center">
-  <div class="bg-gray-100 text-gray-900 p-8 rounded-lg shadow-lg max-w-lg w-full">
-    <h2 class="text-3xl font-bold mb-6 text-center">Add New User</h2>
+<div class="min-h-screen bg-background flex items-center justify-center">
+  <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg max-w-lg w-full">
+    <h2 class="text-3xl font-bold mb-6 text-center">ADD USER</h2>
     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label for="email" class="block text-sm font-medium mb-2">Email</label>
@@ -35,13 +35,12 @@
       <div class="flex items-center justify-between">
         <button
           type="submit"
-          class="w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400"
+          class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400"
           [disabled]="addUserForm.invalid"
         >
-          Add User
+          ADD USER
         </button>
       </div>
     </form>
   </div>
 </div>
-
