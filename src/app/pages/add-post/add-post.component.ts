@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { PostService } from '../../services/post.service';
 import { Router } from '@angular/router';
 
@@ -15,7 +14,6 @@ export class AddPostComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
     private router: Router,
     private postService: PostService
   ) {
@@ -37,11 +35,7 @@ export class AddPostComponent implements OnInit {
         },
         error: (error) => {
           this.errorMessage = 'An error occurred while creating the post. Please try again.';
-          console.error('Error creating post:', error); // Log the error for debugging purposes
-        },
-        complete: () => {
-          // Optional: handle completion of the observable if needed
-          console.log('Post creation request complete');
+          console.error('Error creating post:', error);
         }
       });
     }

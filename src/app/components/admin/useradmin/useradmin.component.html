@@ -1,0 +1,27 @@
+<div class="user-admin p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold text-textPrimary">USER ADMIN</h1>
+    <a routerLink="/admin/add-user" class="btn bg-buttonBg hover:bg-teal-700 text-buttonText font-bold py-2 px-4 rounded">ADD USER</a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded border border-gray-300">
+      <thead class="bg-primary text-buttonText">
+        <tr>
+          <th class="w-1/3 py-3 px-4 uppercase font-semibold text-sm text-left border-b border-gray-300">Username</th>
+          <th class="w-1/3 py-3 px-4 uppercase font-semibold text-sm text-left border-b border-gray-300">Role</th>
+          <th class="w-1/3 py-3 px-4 uppercase font-semibold text-sm text-left border-b border-gray-300">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-textPrimary">
+        <tr *ngFor="let user of users" class="border-b">
+          <td class="py-3 px-4 border-b border-gray-300">{{ user.username }}</td>
+          <td class="py-3 px-4 border-b border-gray-300">{{ user.role }}</td>
+          <td class="py-3 px-4 border-b border-gray-300">
+            <button (click)="editUser(user)" class="bg-secondary hover:bg-red-600 text-buttonText font-bold py-2 px-4 rounded">EDIT</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

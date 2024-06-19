@@ -1,6 +1,6 @@
-<div class="min-h-screen bg-white p-8">
-  <div class="bg-gray-100 text-gray-900 p-8 rounded-lg shadow-lg h-full">
-    <h2 class="text-3xl font-bold mb-6 text-center">Add New Post</h2>
+<div class="min-h-screen bg-background p-8">
+  <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg h-full">
+    <h2 class="text-3xl font-bold mb-6 text-center">ADD POST</h2>
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label for="title" class="block text-sm font-medium mb-2">Title</label>
@@ -20,15 +20,15 @@
         <label for="content" class="block text-sm font-medium mb-2">Content</label>
         <quill-editor
           formControlName="content"
-          class="w-full bg-white text-gray-900 p-3 border border-gray-300 rounded"
+          class="w-full bg-white text-textPrimary p-3 border border-gray-300 rounded"
         ></quill-editor>
         <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
           <small class="text-red-500">Content is required</small>
         </div>
       </div>
 
-      <button type="submit" [disabled]="postForm.invalid" class="w-full p-3 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400">
-        Save Post
+      <button type="submit" [disabled]="postForm.invalid" class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400">
+        SAVE POST
       </button>
     </form>
   </div>

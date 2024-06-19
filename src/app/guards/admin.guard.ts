@@ -6,5 +6,5 @@ export const adminGuard = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.isSuperAdmin() ? true : router.parseUrl('/');
+  return authService.isAdmin() ? true : router.parseUrl('/');
 }
