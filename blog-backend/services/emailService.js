@@ -8,14 +8,16 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-async function sendPasswordSetupEmail(email, token) {
-  console.log('DM ==> sendPasswordSetupEmail ==> email: ', email);
-  const link = `http://localhost:4200/set-password/${token}`;
+async function sendPasswordSetupEmail(email, token, setType) {
+  const linkType = setType === 'new-user' ? 'set-password' : 'reset-password';
+  const link = `http://localhost:4200/${linkType}/${token}`;
+  const subject = setType === 'new-user' ? 'Set Up Your Password' : 'Reset Your Password';
+  const message = setType === 'new-user' ? 'Welcome! Please click the following link to set up your password: ' : 'Please click the following link to reset your password: ';
   const mailOptions = {
     from: 'denismcmahon@gmail.com',
     to: email,
-    subject: 'Set Up Your Password',
-    text: `Welcome! Please click the following link to set up your password: ${link}`
+    subject: subject,
+    text: `${message}: ${link}`
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

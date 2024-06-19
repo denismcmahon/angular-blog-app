@@ -15,10 +15,14 @@ const userSchema = new mongoose.Schema({
     enum: ['admin', 'editor', 'viewer'],
     default: 'user'
   },
-  token: {
+  passwordSetToken: {
     type: String,
     required: false
-  }     // token field if needed for password setup
+  },     // token field if needed for password setup
+  tokenExpires: {
+    type: Date,
+    required: false
+  }
 });
 
 const User = mongoose.model('User', userSchema);

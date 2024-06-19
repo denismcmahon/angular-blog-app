@@ -14,11 +14,11 @@ const getUsers = async (req, res) => {
 }
 
 const addUser = async (req, res) => {
-  console.log('DM ==> add-user ==> req.body: ', req.body);
   try {
     const { email, role } = req.body;
     // generate a token for password setup
     const token = crypto.randomBytes(16).toString('hex');
+    const tokenExpires = Date.now() + 3600000; // 1 hour
 
     // check if the user already exists
     let user = await User.findOne({ email });
@@ -27,11 +27,11 @@ const addUser = async (req, res) => {
     }
 
     // create a new user
-    user = new User({ username: email, role, token });
+    user = new User({ username: email, role, passwordSetToken: token, tokenExpires });
     await user.save();
 
     // send email for passowrd setup
-    await sendPasswordSetupEmail(email, token);
+    await sendPasswordSetupEmail(email, token, 'new-user');
 
     res.status(201).json({ message: 'User added and email sent' });
   }
