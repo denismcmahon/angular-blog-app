@@ -29,6 +29,14 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.apiUrl}/auth/set-password`, { token, password });
   }
 
+  requestPasswordReset(email: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/auth/request-password-reset`, { email });
+  }
+
+  resetPassword(token: string, password: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/auth/reset-password`, { token, password });
+  }
+
   logout() {
     this.userRole = null;
     localStorage.removeItem('userRole');
