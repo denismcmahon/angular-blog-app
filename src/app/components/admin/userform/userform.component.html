@@ -1,6 +1,6 @@
 <div class="min-h-screen bg-background flex items-center justify-center">
   <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg max-w-lg w-full">
-    <h2 class="text-3xl font-bold mb-6 text-center">ADD USER</h2>
+    <h2 class="text-3xl font-bold mb-6 text-center">{{ isEditMode ? 'EDIT USER' : 'ADD USER' }}</h2>
     <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label for="email" class="block text-sm font-medium mb-2">Email</label>
@@ -38,8 +38,11 @@
           class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400"
           [disabled]="addUserForm.invalid"
         >
-          ADD USER
+          {{ isEditMode ? 'UPDATE USER' : 'ADD USER' }}
         </button>
+      </div>
+      <div *ngIf="errorMessage" class="mt-4 text-red-500 text-center">
+        {{ errorMessage }}
       </div>
     </form>
   </div>

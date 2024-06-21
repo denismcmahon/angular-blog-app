@@ -11,7 +11,7 @@ import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserAdminComponent } from './components/admin/useradmin/useradmin.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { AdduserComponent } from './components/admin/adduser/adduser.component';
+import { UserFormComponent } from './components/admin/userform/userform.component';
 import { SetPasswordComponent } from './components/auth/set-password/set-password.component';
 
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
@@ -27,7 +27,7 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
     NavbarComponent,
     UserAdminComponent,
     LoginComponent,
-    AdduserComponent,
+    UserFormComponent,
     SetPasswordComponent,
     RequestPasswordResetComponent,
     ResetPasswordComponent

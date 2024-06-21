@@ -24,6 +24,11 @@ export class UserAdminComponent implements OnInit {
   }
 
   editUser(user: any) {
-    this.router.navigate(['/admin/edit-user', user.id]);
+    console.log('Editing user:', user);
+    if (user && user._id) {
+      this.router.navigate(['/admin/edit-user', user._id]);
+    } else {
+      console.error('User ID is undefined:', user);
+    }
   }
 }

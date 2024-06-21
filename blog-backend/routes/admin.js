@@ -5,5 +5,7 @@ const authenticateJWT = require('../middlewares/auth');
 
 router.get('/users', adminController.getUsers);
 router.post('/add-user', authenticateJWT, adminController.addUser);
+router.put('/edit-user/:id', adminController.editUser);
+router.get('/user/:id', adminController.getUserById);
 
 module.exports = router;
