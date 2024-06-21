@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-userform',
@@ -18,7 +19,8 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.addUserForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -52,7 +54,8 @@ export class UserFormComponent implements OnInit {
         this.userService.updateUser(this.userId!, this.addUserForm.value).subscribe({
           next: (response) => {
             console.log('User updated successfully', response);
-            this.router.navigate(['/admin/users']);
+            this.toastr.success('User Updated', 'Success');
+            this.router.navigate(['/admin/home']);
           },
           error: (error) => {
             this.errorMessage = 'An error occurred while updating the user. Please try again.';
@@ -63,7 +66,8 @@ export class UserFormComponent implements OnInit {
         this.userService.addUser(this.addUserForm.value).subscribe({
           next: (response) => {
             console.log('User added successfully', response);
-            this.router.navigate(['/admin/users']);
+            this.toastr.success('User Added', 'Success');
+            this.router.navigate(['/admin/home']);
           },
           error: (error) => {
             this.errorMessage = 'An error occurred while creating the user. Please try again.';

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,8 @@ import { SetPasswordComponent } from './components/auth/set-password/set-passwor
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
 import { RequestPasswordResetComponent } from './components/auth/request-password-reset/request-password-reset.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -38,7 +41,9 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuillModule
+    QuillModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     {
