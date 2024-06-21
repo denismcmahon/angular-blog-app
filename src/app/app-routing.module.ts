@@ -6,6 +6,8 @@ import { UserAdminComponent } from './components/admin/useradmin/useradmin.compo
 import { LoginComponent } from './components/auth/login/login.component';
 import { SetPasswordComponent } from './components/auth/set-password/set-password.component';
 import { AdduserComponent } from './components/admin/adduser/adduser.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { RequestPasswordResetComponent } from './components/auth/request-password-reset/request-password-reset.component';
 import { authGuard } from './guards/auth.guard';
 import { adminGuard } from './guards/admin.guard';
 
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'admin/home', component: UserAdminComponent, canActivate: [adminGuard] },
   { path: 'admin/add-user', component: AdduserComponent, canActivate: [adminGuard] },
   { path: 'set-password/:token', component: SetPasswordComponent },
+  { path: 'request-password-reset', component: RequestPasswordResetComponent },
+  { path: 'reset-password/:token', component: ResetPasswordComponent },
   { path: 'login', component: LoginComponent },
 ];
 

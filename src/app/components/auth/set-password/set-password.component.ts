@@ -18,7 +18,6 @@ export class SetPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private http: HttpClient,
     private authService: AuthService,
   ) { }
 

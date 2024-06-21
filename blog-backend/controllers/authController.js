@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const { sendPasswordSetupEmail } = require('../services/emailService');
+const crypto = require('crypto');
 
 const login = async (req, res) => {
   const { username, password } = req.body;
@@ -58,7 +59,7 @@ const setPassword = async (req, res) => {
 const requestPasswordReset = async (req, res) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ username: email });
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -72,7 +73,6 @@ const requestPasswordReset = async (req, res) => {
 
     // send email for passowrd setup
     await sendPasswordSetupEmail(email, token, 'reset');
-
     res.status(200).json({ message: 'Password reset email sent' });
   } catch (error) {
     res.status(500).json({ message: 'Error requesting password reset', error });

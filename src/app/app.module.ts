@@ -15,6 +15,8 @@ import { AdduserComponent } from './components/admin/adduser/adduser.component';
 import { SetPasswordComponent } from './components/auth/set-password/set-password.component';
 
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
+import { RequestPasswordResetComponent } from './components/auth/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
     UserAdminComponent,
     LoginComponent,
     AdduserComponent,
-    SetPasswordComponent
+    SetPasswordComponent,
+    RequestPasswordResetComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,
