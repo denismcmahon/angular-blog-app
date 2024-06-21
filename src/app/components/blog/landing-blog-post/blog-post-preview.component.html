@@ -1,0 +1,5 @@
+<div class="bg-white shadow-lg rounded-lg p-6">
+  <h3 class="text-xl font-semibold mb-4">{{ post.title }}</h3>
+  <div [innerHTML]="post.content | truncate: 200" class="text-gray-700"></div>
+  <button class="mt-4 px-4 py-2 bg-buttonBg text-white rounded hover:bg-teal-700 disabled:bg-gray-400" (click)="viewPost()">Read More</button>
+</div>
