@@ -9,13 +9,12 @@ import { jwtDecode } from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api';
   private userRole: string | null = null;
 
   constructor(private router: Router, private http: HttpClient) {}
 
   login(username: string, password: string): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/login`, { username, password });
+    return this.http.post<{ token: string }>('/api/auth/login', { username, password });
   }
 
   handleLogin(token: string) {
@@ -26,15 +25,15 @@ export class AuthService {
   }
 
   setPassword(token: string, password: string): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/auth/set-password`, { token, password });
+    return this.http.post<{ token: string }>('/api/auth/set-password', { token, password });
   }
 
   requestPasswordReset(email: string): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/auth/request-password-reset`, { email });
+    return this.http.post<void>('/api/auth/request-password-reset', { email });
   }
 
   resetPassword(token: string, password: string): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/auth/reset-password`, { token, password });
+    return this.http.post<void>('/api/auth/reset-password', { token, password });
   }
 
   logout() {

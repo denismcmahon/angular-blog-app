@@ -6,15 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostService {
-  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) { }
 
   addPost(title: string, content: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/posts/add-post`, { title, content });
+    return this.http.post<any>('/api/posts/add-post', { title, content });
   }
 
   getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/posts/getposts`);
+    return this.http.get<any[]>('api/posts/getposts');
   }
 }
