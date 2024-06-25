@@ -2,7 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostService } from '../../../services/post.service';
 import { QuillEditorComponent } from 'ngx-quill';
-import ImageUpload from '../../../shared/quill-image-upload.module'; // Adjust the path based on your project structuree
+import ImageUpload from '../../../shared/quill-image-upload.module';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-post',
@@ -12,6 +14,7 @@ import ImageUpload from '../../../shared/quill-image-upload.module'; // Adjust t
 export class AddPostComponent {
   @ViewChild(QuillEditorComponent) quillEditorComponent: QuillEditorComponent;
   postForm: FormGroup;
+  errorMessage: string | null = null;
   quillInstance: any;
 
   quillModules = {
@@ -43,7 +46,13 @@ export class AddPostComponent {
     }
   };
 
-  constructor(private fb: FormBuilder, private postService: PostService) {
+  constructor(
+    private fb: FormBuilder,
+    private postService: PostService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required]
@@ -52,28 +61,32 @@ export class AddPostComponent {
 
   onEditorCreated(event: QuillEditorComponent) {
     this.quillInstance = event;
-    console.log('Quill instance is ready:', this.quillInstance);
     new ImageUpload(this.quillInstance, this.quillModules.imageUpload);
   }
 
   onSubmit(): void {
-    console.log('Form submitted:', this.postForm.value);
     if (this.postForm.invalid) {
       return;
     }
 
-    // Check if the Quill instance is ready
+    // check if the Quill instance is ready
     if (this.quillInstance) {
-      console.log('Quill editor content:', this.quillInstance);
       const content = this.quillInstance.root.innerHTML;
       this.postForm.get('content')?.setValue(content);
 
       const title = this.postForm.get('title')?.value;
 
-      this.postService.addPost(title, content).subscribe(
-        response => console.log('Post created successfully', response),
-        error => console.error('Error creating post', error)
-      );
+      this.postService.addPost(title, content).subscribe({
+        next: (response) => {
+          console.log('Post created successfully', response);
+          this.toastr.success('Post added', 'Success');
+          this.router.navigate(['/']);
+        },
+        error: (error) => {
+          this.errorMessage = 'An error occurred while creating the user. Please try again.';
+          console.error('Error creating user:', error);
+        }
+      });
     } else {
       console.error('Quill editor is not ready');
     }

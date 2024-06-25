@@ -12,7 +12,6 @@ export default class ImageUpload {
   }
 
   selectLocalImage() {
-    console.log('DM ==> selectLocalImage called!');
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
@@ -29,7 +28,6 @@ export default class ImageUpload {
   }
 
   saveToServer(file: File) {
-    console.log('DM ==> saveToServer called!');
     const data = new FormData();
     data.append('image', file);
 
