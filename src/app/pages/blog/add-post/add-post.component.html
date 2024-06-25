@@ -1,8 +1,7 @@
-<!-- add-post.component.html -->
 <div class="min-h-screen bg-background p-8">
   <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg h-full">
     <h2 class="text-3xl font-bold mb-6 text-center">ADD POST</h2>
-    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
       <div class="mb-4">
         <label for="title" class="block text-sm font-medium mb-2">Title</label>
         <input
@@ -20,23 +19,15 @@
       <div class="mb-6">
         <label for="content" class="block text-sm font-medium mb-2">Content</label>
         <quill-editor
+          #quillEditor
           formControlName="content"
+          [modules]="quillModules"
           class="w-full bg-white text-textPrimary p-3 border border-gray-300 rounded"
+          (onEditorCreated)="onEditorCreated($event)"
         ></quill-editor>
         <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
           <small class="text-red-500">Content is required</small>
         </div>
-      </div>
-
-      <div class="mb-6">
-        <label for="images" class="block text-sm font-medium mb-2">Upload Images</label>
-        <input
-          type="file"
-          id="images"
-          (change)="onFileSelected($event)"
-          multiple
-          class="w-full p-3 border border-gray-300 rounded bg-white"
-        />
       </div>
 
       <button type="submit" [disabled]="postForm.invalid" class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400">

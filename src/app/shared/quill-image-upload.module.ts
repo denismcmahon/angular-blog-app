@@ -1,6 +1,6 @@
 import Quill from 'quill';
 
-class ImageUpload {
+export default class ImageUpload {
   quill: any;
   options: any;
 
@@ -12,6 +12,7 @@ class ImageUpload {
   }
 
   selectLocalImage() {
+    console.log('DM ==> selectLocalImage called!');
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
     input.setAttribute('accept', 'image/*');
@@ -28,17 +29,26 @@ class ImageUpload {
   }
 
   saveToServer(file: File) {
+    console.log('DM ==> saveToServer called!');
     const data = new FormData();
     data.append('image', file);
 
-    fetch('/api/upload', {
+    fetch('/api/upload/upload-image', {
       method: 'POST',
       body: data,
     })
       .then((response) => response.json())
       .then((result) => {
         const range = this.quill.getSelection();
+
+        // Insert the image with the URL obtained from the server
         this.quill.insertEmbed(range.index, 'image', result.imageUrl);
+
+        // Move cursor to next line after inserting the image
+        this.quill.setSelection(range.index + 1);
+
+        // Log the current content of the editor
+        console.log('Content after image upload:', this.quill.root.innerHTML);
       })
       .catch((error) => {
         console.error('Upload error', error);
