@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { AddPostComponent } from './pages/blog/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
+import Quill from 'quill';
+import ImageResize from 'quill-image-resize';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserAdminComponent } from './pages/admin/useradmin/useradmin.component';
 import { LoginComponent } from './pages/auth/login/login.component';
@@ -22,6 +24,8 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { ToastrModule } from 'ngx-toastr';
 import { BlogPostPreviewComponent } from './components/blog/landing-blog-post/blog-post-preview.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+
+Quill.register('modules/imageResize', ImageResize);
 
 
 @NgModule({
@@ -45,7 +49,18 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    QuillModule,
+    QuillModule.forRoot({
+      modules: {
+        imageResize: {
+          displayStyles: {
+            backgroundColor: 'black',
+            border: 'none',
+            color: 'white'
+          },
+          modules: ['Resize', 'DisplaySize', 'Toolbar']
+        }
+      }
+    }),
     ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],

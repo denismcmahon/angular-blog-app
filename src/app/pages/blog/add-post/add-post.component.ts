@@ -44,6 +44,9 @@ export class AddPostComponent {
             callback('');
           });
       }
+    },
+    imageResize: {
+      // Add any additional configuration for the imageResize module here
     }
   };
 
