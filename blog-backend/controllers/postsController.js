@@ -21,7 +21,17 @@ const getPosts = async (req, res) => {
   }
 };
 
+const getPostById = async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    res.status(200).send(post);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   addPost,
-  getPosts
+  getPosts,
+  getPostById
 };

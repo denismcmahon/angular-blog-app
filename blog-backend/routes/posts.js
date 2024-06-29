@@ -5,5 +5,6 @@ const authenticateJWT = require('../middlewares/auth');
 
 router.post('/add-post', authenticateJWT, postsController.addPost);
 router.get('/getposts',  postsController.getPosts);
+router.get('/getpost/:id',  postsController.getPostById);
 
 module.exports = router;

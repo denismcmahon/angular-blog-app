@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ViewPostComponent } from './pages/blog/view-post/view-post.component';
 import { AddPostComponent } from './pages/blog/add-post/add-post.component';
 import { UserAdminComponent } from './pages/admin/useradmin/useradmin.component';
 import { LoginComponent } from './pages/auth/login/login.component';
@@ -13,6 +14,7 @@ import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
+  { path: 'view-post/:id', component: ViewPostComponent },
   { path: 'add-post', component: AddPostComponent, canActivate: [authGuard] },
   { path: 'admin/home', component: UserAdminComponent, canActivate: [adminGuard] },
   { path: 'admin/add-user', component: UserFormComponent, canActivate: [adminGuard] },

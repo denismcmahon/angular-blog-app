@@ -24,6 +24,7 @@ import { ResetPasswordComponent } from './pages/auth/reset-password/reset-passwo
 import { ToastrModule } from 'ngx-toastr';
 import { BlogPostPreviewComponent } from './components/blog/landing-blog-post/blog-post-preview.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ViewPostComponent } from './pages/blog/view-post/view-post.component';
 
 Quill.register('modules/imageResize', ImageResize);
 
@@ -41,7 +42,8 @@ Quill.register('modules/imageResize', ImageResize);
     RequestPasswordResetComponent,
     ResetPasswordComponent,
     BlogPostPreviewComponent,
-    TruncatePipe
+    TruncatePipe,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,
