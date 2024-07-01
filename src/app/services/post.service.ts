@@ -9,12 +9,16 @@ export class PostService {
 
   constructor(private http: HttpClient) { }
 
-  addPost(title: string, content: string): Observable<any> {
-    return this.http.post<any>('/api/posts/add-post', { title, content });
+  addPost(title: string, content: string, tags: string[]): Observable<any> {
+    return this.http.post<any>('/api/posts/add-post', { title, content, tags });
   }
 
   getPosts(): Observable<any[]> {
     return this.http.get<any[]>('api/posts/getposts');
+  }
+
+  getTags(query:any): Observable<any[]> {
+    return this.http.get<any[]>('api/posts/tags');
   }
 
   getPostById(postId: string): Observable<any> {

@@ -30,6 +30,32 @@
         </div>
       </div>
 
+      <div class="mb-6">
+        <label for="tags" class="block text-sm font-medium mb-2">Tags</label>
+        <input
+          type="text"
+          id="tags"
+          [(ngModel)]="tagInput"
+          (keyup.enter)="addTag(tagInput)"
+          (input)="onTagInputChange()"
+          class="w-full p-3 border border-gray-300 rounded bg-white"
+        />
+        <ul *ngIf="suggestions.length > 0" class="bg-white border border-gray-300 rounded mt-2">
+          <li *ngFor="let suggestion of suggestions" (click)="addTag(suggestion)" class="p-2 cursor-pointer hover:bg-gray-200">
+            {{ suggestion }}
+          </li>
+        </ul>
+        <button type="button" (click)="addTag(tagInput)" class="mt-2 p-2 bg-blue-500 text-white rounded">
+          Add Tag
+        </button>
+        <div class="mt-2">
+          <span *ngFor="let tag of tags" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            {{ tag }}
+            <span (click)="removeTag(tag)" class="text-red-500 cursor-pointer ml-1">x</span>
+          </span>
+        </div>
+      </div>
+
       <button type="submit" [disabled]="postForm.invalid" class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400">
         SAVE POST
       </button>

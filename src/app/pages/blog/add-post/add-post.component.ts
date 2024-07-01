@@ -5,7 +5,7 @@ import { QuillEditorComponent } from 'ngx-quill';
 import ImageUpload from '../../../shared/quill-image-upload.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import Quill from 'quill';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-post',
@@ -18,15 +18,19 @@ export class AddPostComponent {
   errorMessage: string | null = null;
   quillInstance: any;
 
+  tagInput: string = '';
+  tags: string[] = [];
+  suggestions: string[] = [];
+
   quillModules = {
     toolbar: [
       ['bold', 'italic'],
       ['link', 'image']
     ],
     imageUpload: {
-      url: '/api/upload/upload-image', // Endpoint to upload image
+      url: '/api/upload/upload-image',
       method: 'POST',
-      name: 'image', // Name of the field that your backend expects
+      name: 'image',
       handler: (image: any, callback: any) => {
         const formData = new FormData();
         formData.append('image', image);
@@ -37,7 +41,7 @@ export class AddPostComponent {
         })
           .then((response) => response.json())
           .then((result) => {
-            callback(result.imageUrl); // Pass the image URL to Quill editor
+            callback(result.imageUrl);
           })
           .catch((error) => {
             console.error('Image upload error:', error);
@@ -45,9 +49,7 @@ export class AddPostComponent {
           });
       }
     },
-    imageResize: {
-      // Add any additional configuration for the imageResize module here
-    }
+    imageResize: {}
   };
 
   constructor(
@@ -55,7 +57,8 @@ export class AddPostComponent {
     private postService: PostService,
     private router: Router,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private http: HttpClient
   ) {
     this.postForm = this.fb.group({
       title: ['', Validators.required],
@@ -68,27 +71,50 @@ export class AddPostComponent {
     new ImageUpload(this.quillInstance, this.quillModules.imageUpload);
   }
 
+  onTagInputChange(): void {
+    const query = this.tagInput.trim();
+    if (query) {
+      this.http.get<string[]>(`/api/tags?search=${query}`).subscribe((data) => {
+        this.suggestions = data;
+      });
+    } else {
+      this.suggestions = [];
+    }
+  }
+
+  addTag(tag: string): void {
+    console.log('DM ==> addTag', tag);
+    tag = tag.trim();
+    if (tag && this.tags.indexOf(tag) === -1) {
+      this.tags.push(tag);
+    }
+    this.tagInput = '';
+    this.suggestions = [];
+  }
+
+  removeTag(tag: string): void {
+    this.tags = this.tags.filter(t => t !== tag);
+  }
+
   onSubmit(): void {
     if (this.postForm.invalid) {
       return;
     }
 
-    // check if the Quill instance is ready
     if (this.quillInstance) {
       const content = this.quillInstance.root.innerHTML;
       this.postForm.get('content')?.setValue(content);
 
       const title = this.postForm.get('title')?.value;
 
-      this.postService.addPost(title, content).subscribe({
+      this.postService.addPost(title, content, this.tags).subscribe({
         next: (response) => {
-          console.log('Post created successfully', response);
           this.toastr.success('Post added', 'Success');
           this.router.navigate(['/']);
         },
         error: (error) => {
-          this.errorMessage = 'An error occurred while creating the user. Please try again.';
-          console.error('Error creating user:', error);
+          this.errorMessage = 'An error occurred while creating the post. Please try again.';
+          console.error('Error creating post:', error);
         }
       });
     } else {
