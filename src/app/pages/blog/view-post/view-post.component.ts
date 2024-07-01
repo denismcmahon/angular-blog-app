@@ -10,6 +10,7 @@ import { PostService } from '../../../services/post.service';
 export class ViewPostComponent implements OnInit {
   postId: string | null = null;
   errorMessage: string | null = null;
+  post: any;
 
   constructor(
     private router: Router,
@@ -23,6 +24,7 @@ export class ViewPostComponent implements OnInit {
 
     this.postService.getPostById(this.postId!).subscribe(post => {
       console.log('Post data:', post);
+      this.post = post;
     }, error => {
       this.errorMessage = 'An error occurred while fetching the user data. Please try again.';
       console.error('Error fetching user data:', error);
