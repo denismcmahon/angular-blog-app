@@ -12,6 +12,6 @@ export class BlogPostPreviewComponent {
   constructor(private router: Router) {}
 
   viewPost() {
-    this.router.navigate(['/post', this.post._id]);
+    this.router.navigate(['/view-post', this.post._id]);
   }
 }

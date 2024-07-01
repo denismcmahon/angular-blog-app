@@ -1,0 +1,18 @@
+<!-- view-post.component.html -->
+
+<!-- Post card container -->
+<div class="max-w-lg mx-auto bg-white rounded-lg shadow-lg">
+  <div class="p-4">
+    <!-- Post title and author -->
+    <h2 class="text-xl font-semibold mb-2">{{ post?.title }}</h2>
+    <p class="text-gray-600">{{ post?.author }}</p>
+
+    <!-- Post content -->
+    <div class="mt-4" [innerHTML]="post?.content"></div>
+  </div>
+</div>
+
+<!-- Error message display -->
+<div *ngIf="errorMessage" class="text-red-500 text-center mt-4">
+  {{ errorMessage }}
+</div>
