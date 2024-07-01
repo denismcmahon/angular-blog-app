@@ -7,19 +7,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './pages/landing/landing.component';
-import { AddPostComponent } from './pages/add-post/add-post.component';
+import { AddPostComponent } from './pages/blog/add-post/add-post.component';
 import { QuillModule } from 'ngx-quill';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { UserAdminComponent } from './components/admin/useradmin/useradmin.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { UserFormComponent } from './components/admin/userform/userform.component';
-import { SetPasswordComponent } from './components/auth/set-password/set-password.component';
+import { UserAdminComponent } from './pages/admin/useradmin/useradmin.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { UserFormComponent } from './pages/admin/userform/userform.component';
+import { SetPasswordComponent } from './pages/auth/set-password/set-password.component';
 
 import { AuthInterceptor } from './interceptors/auth/auth-interceptor.service';
-import { RequestPasswordResetComponent } from './components/auth/request-password-reset/request-password-reset.component';
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { RequestPasswordResetComponent } from './pages/auth/request-password-reset/request-password-reset.component';
+import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { BlogPostPreviewComponent } from './components/blog/landing-blog-post/blog-post-preview.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
     UserFormComponent,
     SetPasswordComponent,
     RequestPasswordResetComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    BlogPostPreviewComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

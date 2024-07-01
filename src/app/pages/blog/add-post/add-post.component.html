@@ -19,8 +19,11 @@
       <div class="mb-6">
         <label for="content" class="block text-sm font-medium mb-2">Content</label>
         <quill-editor
+          #quillEditor
           formControlName="content"
+          [modules]="quillModules"
           class="w-full bg-white text-textPrimary p-3 border border-gray-300 rounded"
+          (onEditorCreated)="onEditorCreated($event)"
         ></quill-editor>
         <div *ngIf="postForm.get('content')?.invalid && postForm.get('content')?.touched">
           <small class="text-red-500">Content is required</small>

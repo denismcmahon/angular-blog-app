@@ -1,5 +1,6 @@
-<h2>POSTS</h2>
-<div *ngFor="let post of posts">
-  <h3>{{ post.title }}</h3>
-  <div [innerHTML]="post.content"></div>
+<div class="container mx-auto px-4 py-8">
+  <h2 class="text-3xl font-bold text-center mb-8">POSTS</h2>
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <app-blog-post *ngFor="let post of posts" [post]="post"></app-blog-post>
+  </div>
 </div>
