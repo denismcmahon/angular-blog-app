@@ -5,6 +5,7 @@ import { QuillEditorComponent } from 'ngx-quill';
 import ImageUpload from '../../../shared/quill-image-upload.module';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Quill from 'quill';
 
 @Component({
   selector: 'app-add-post',
@@ -43,6 +44,9 @@ export class AddPostComponent {
             callback('');
           });
       }
+    },
+    imageResize: {
+      // Add any additional configuration for the imageResize module here
     }
   };
 
