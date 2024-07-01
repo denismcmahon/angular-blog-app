@@ -25,6 +25,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BlogPostPreviewComponent } from './components/blog/landing-blog-post/blog-post-preview.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ViewPostComponent } from './pages/blog/view-post/view-post.component';
+import { SidebarComponent } from './components/site/sidebar/sidebar.component';
+import { TopbarComponent } from './components/site/topbar/topbar.component';
 
 Quill.register('modules/imageResize', ImageResize);
 
@@ -43,7 +45,9 @@ Quill.register('modules/imageResize', ImageResize);
     ResetPasswordComponent,
     BlogPostPreviewComponent,
     TruncatePipe,
-    ViewPostComponent
+    ViewPostComponent,
+    SidebarComponent,
+    TopbarComponent
   ],
   imports: [
     BrowserModule,

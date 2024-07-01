@@ -1,5 +1,12 @@
-<div class="bg-white shadow-lg rounded-lg p-6">
-  <h3 class="text-xl font-semibold mb-4">{{ post.title }}</h3>
-  <div [innerHTML]="post.content | truncate: 200" class="text-gray-700"></div>
-  <button class="mt-4 px-4 py-2 bg-buttonBg text-white rounded hover:bg-teal-700 disabled:bg-gray-400" (click)="viewPost()">Read More</button>
+<!-- blog-post-preview.component.html -->
+<div class="flex bg-white shadow-lg rounded-lg p-6">
+  <div class="flex-1">
+    <h3 class="text-2xl font-bold mb-2">{{ post.title }}</h3>
+    <p class="text-gray-600 mb-4">{{ post.author }}</p>
+    <div [innerHTML]="post.content | truncate: 200" class="text-gray-700"></div>
+    <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400" (click)="viewPost()">Read More</button>
+  </div>
+  <div class="ml-4">
+    <img *ngIf="post.image" [src]="post.image" alt="{{ post.title }}" class="h-32 w-32 object-cover rounded-lg">
+  </div>
 </div>

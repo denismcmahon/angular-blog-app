@@ -1,6 +1,17 @@
-<div class="container mx-auto px-4 py-8">
-  <h2 class="text-3xl font-bold text-center mb-8">POSTS</h2>
-  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-    <app-blog-post *ngFor="let post of posts" [post]="post"></app-blog-post>
+<div class="container mx-auto px-4 py-12 flex">
+  <div class="flex-1">
+    <!-- horizontal section for topics -->
+    <app-topbar></app-topbar>
+
+    <!-- posts Section -->
+    <h2 class="text-4xl font-bold text-center mb-12">POSTS</h2>
+    <div class="space-y-8">
+      <app-blog-post *ngFor="let post of posts" [post]="post"></app-blog-post>
+    </div>
+  </div>
+
+  <!-- column section for tags and categories -->
+  <div class="w-1/4 ml-8">
+    <app-sidebar></app-sidebar>
   </div>
 </div>

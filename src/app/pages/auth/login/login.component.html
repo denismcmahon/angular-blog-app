@@ -1,5 +1,5 @@
-<div class="min-h-screen bg-background flex items-center justify-center">
-  <div class="bg-gray-100 text-textPrimary p-8 rounded-lg shadow-lg max-w-lg w-full">
+<div class="min-h-screen bg-white flex items-center justify-center">
+  <div class="bg-gray-50 text-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
     <h2 class="text-3xl font-bold mb-6 text-center">LOGIN</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div *ngIf="errorMessage" class="mb-4 p-4 bg-red-100 text-red-700 border border-red-400 rounded">
@@ -11,7 +11,7 @@
           type="text"
           id="username"
           formControlName="username"
-          class="w-full p-3 border border-gray-300 rounded bg-white"
+          class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
         />
         <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
           <small class="text-red-500">Username is required</small>
@@ -24,19 +24,19 @@
           type="password"
           id="password"
           formControlName="password"
-          class="w-full p-3 border border-gray-300 rounded bg-white"
+          class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
         />
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
           <small class="text-red-500">Password is required</small>
         </div>
       </div>
 
-      <button type="submit" [disabled]="loginForm.invalid" class="w-full p-3 bg-buttonBg text-buttonText rounded hover:bg-teal-700 disabled:bg-gray-400">
+      <button type="submit" [disabled]="loginForm.invalid" class="w-full p-3 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400">
         LOGIN
       </button>
     </form>
     <div class="mt-4 text-center">
-      <a routerLink="/request-password-reset" class="text-primary hover:underline">
+      <a routerLink="/request-password-reset" class="text-blue-500 hover:underline">
         Forgot Password?
       </a>
     </div>
